@@ -12,7 +12,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Mengarahkan public_path() ke public_html di cPanel secara otomatis jika foldernya ada
+        $cpanelPublicPath = base_path('../../public_html/twogether.azmee.my.id');
+        if (is_dir($cpanelPublicPath)) {
+            $this->app->usePublicPath($cpanelPublicPath);
+        }
     }
 
     /**

@@ -21,6 +21,9 @@
 /storage/*.key
 /storage/pail
 /vendor
+/docs
+/public/buildds.zip
+/database.zip
 _ide_helper.php
 Homestead.json
 Homestead.yaml
