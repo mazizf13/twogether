@@ -126,9 +126,29 @@ class DashboardController extends Controller
             $vsLastMonthPct = 100;
         }
 
+        // 8. Active Shared Expense Groups
+        $activeSharedGroups = [];
+        if (class_exists(\App\Models\SharedExpenseGroup::class)) {
+            $groups = \App\Models\SharedExpenseGroup::withSum('sharedExpenses', 'amount_cents')
+                ->where('couple_id', $couple->id)
+                ->where('status', 'active')
+                ->orderByDesc('created_at')
+                ->get();
+            $activeSharedGroups = $groups->map(fn($g) => [
+                'id' => $g->id,
+                'name' => $g->name,
+                'icon' => $g->icon,
+                'color' => $g->color,
+                'status' => $g->status,
+                'description' => $g->description,
+                'total_amount_cents' => (int) $g->shared_expenses_sum_amount_cents,
+            ])->toArray();
+        }
+
         return Inertia::render('Dashboard', [
             'couple' => $coupleData,
             'countdown' => $countdown,
+            'active_shared_groups' => $activeSharedGroups,
             'balance' => $balanceData,
             'savings_summary' => $savingsSummary,
             'top_goals' => $topGoalsData,

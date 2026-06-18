@@ -69,7 +69,7 @@ export default function Couple({ user, couple }: any) {
                 value={data.name}
                 onChange={e => setData('name', e.target.value)}
                 placeholder="E.g. Reza & Dinda's Journey"
-                className="w-full rounded-xl border-neutral-200 dark:border-neutral-800 focus:border-pink-500 focus:ring-pink-500"
+                className="w-full rounded-xl border border-pink-200 dark:border-pink-900/50 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 bg-white dark:bg-neutral-950"
               />
               {errors.name && <p className="mt-1 text-xs text-rose-500">{errors.name}</p>}
             </div>
@@ -85,7 +85,7 @@ export default function Couple({ user, couple }: any) {
                   type="date"
                   value={data.wedding_date}
                   onChange={e => setData('wedding_date', e.target.value)}
-                  className="w-full pl-10 rounded-xl border-neutral-200 dark:border-neutral-800 focus:border-pink-500 focus:ring-pink-500"
+                  className="w-full pl-10 rounded-xl border border-pink-200 dark:border-pink-900/50 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 bg-white dark:bg-neutral-950"
                 />
               </div>
               {daysUntil !== null && daysUntil > 0 && (

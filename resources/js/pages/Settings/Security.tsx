@@ -73,7 +73,7 @@ export default function Security({ user, couple }: any) {
                 type="password"
                 value={data.current_password}
                 onChange={e => setData('current_password', e.target.value)}
-                className="w-full rounded-xl border-neutral-200 dark:border-neutral-800 focus:border-pink-500 focus:ring-pink-500"
+                className="w-full rounded-xl border border-pink-200 dark:border-pink-900/50 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 bg-white dark:bg-neutral-950"
               />
               {errors.current_password && <p className="mt-1 text-xs text-rose-500">{errors.current_password}</p>}
             </div>
@@ -85,7 +85,7 @@ export default function Security({ user, couple }: any) {
                 type="password"
                 value={data.password}
                 onChange={e => setData('password', e.target.value)}
-                className="w-full rounded-xl border-neutral-200 dark:border-neutral-800 focus:border-pink-500 focus:ring-pink-500"
+                className="w-full rounded-xl border border-pink-200 dark:border-pink-900/50 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 bg-white dark:bg-neutral-950"
               />
               {/* Strength Indicator */}
               <div className="mt-2 flex items-center space-x-3">
@@ -109,7 +109,7 @@ export default function Security({ user, couple }: any) {
                 type="password"
                 value={data.password_confirmation}
                 onChange={e => setData('password_confirmation', e.target.value)}
-                className="w-full rounded-xl border-neutral-200 dark:border-neutral-800 focus:border-pink-500 focus:ring-pink-500"
+                className="w-full rounded-xl border border-pink-200 dark:border-pink-900/50 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 bg-white dark:bg-neutral-950"
               />
             </div>
 

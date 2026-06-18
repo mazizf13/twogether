@@ -6,12 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])
@@ -24,6 +19,7 @@ Route::middleware(['auth', 'verified', 'has_couple', 'couple_active'])->group(fu
     Route::get('/expenses/shared/groups/{group}', [\App\Http\Controllers\Expenses\SharedExpenseGroupController::class, 'show'])->name('expenses.shared.groups.show');
     Route::put('/expenses/shared/groups/{group}', [\App\Http\Controllers\Expenses\SharedExpenseGroupController::class, 'update'])->name('expenses.shared.groups.update');
     Route::delete('/expenses/shared/groups/{group}', [\App\Http\Controllers\Expenses\SharedExpenseGroupController::class, 'destroy'])->name('expenses.shared.groups.destroy');
+    Route::post('/expenses/shared/groups/{group}/settle', [\App\Http\Controllers\Expenses\SharedExpenseGroupController::class, 'markSettled'])->name('expenses.shared.groups.settle');
 
     // Shared Expenses
     Route::get('/expenses/shared', [\App\Http\Controllers\Expenses\SharedExpenseController::class, 'index'])->name('expenses.shared');

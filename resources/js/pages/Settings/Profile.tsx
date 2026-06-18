@@ -9,7 +9,7 @@ export default function Profile({ user, couple }: any) {
   const { data, setData, put, processing, errors } = useForm({
     display_name: user.display_name || '',
     avatar_url: user.avatar_url || '',
-    theme: user.theme || 'system',
+    theme: user.theme || 'light',
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -56,7 +56,7 @@ export default function Profile({ user, couple }: any) {
                 type="text"
                 value={data.display_name}
                 onChange={e => setData('display_name', e.target.value)}
-                className="w-full rounded-xl border-neutral-200 dark:border-neutral-800 focus:border-pink-500 focus:ring-pink-500"
+                className="w-full rounded-xl border border-pink-200 dark:border-pink-900/50 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 bg-white dark:bg-neutral-950"
               />
               {errors.display_name && <p className="mt-1 text-xs text-rose-500">{errors.display_name}</p>}
             </div>
@@ -69,7 +69,7 @@ export default function Profile({ user, couple }: any) {
                 value={data.avatar_url}
                 onChange={e => setData('avatar_url', e.target.value)}
                 placeholder="https://example.com/avatar.jpg"
-                className="w-full rounded-xl border-neutral-200 dark:border-neutral-800 focus:border-pink-500 focus:ring-pink-500"
+                className="w-full rounded-xl border border-pink-200 dark:border-pink-900/50 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500/20 focus:border-pink-500 bg-white dark:bg-neutral-950"
               />
               <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">For now, paste a direct URL to an image. File uploads are coming soon.</p>
               {errors.avatar_url && <p className="mt-1 text-xs text-rose-500">{errors.avatar_url}</p>}
@@ -81,7 +81,7 @@ export default function Profile({ user, couple }: any) {
                 type="email"
                 value={user.email}
                 disabled
-                className="w-full rounded-xl border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-neutral-500 dark:text-neutral-400 cursor-not-allowed"
+                className="w-full rounded-xl border border-pink-200 dark:border-pink-900/50 px-4 py-3 bg-neutral-50 dark:bg-neutral-900/50 text-neutral-500 dark:text-neutral-400 cursor-not-allowed"
               />
               <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">To change your email, please contact support.</p>
             </div>
@@ -93,12 +93,11 @@ export default function Profile({ user, couple }: any) {
                   <SelectValue placeholder="Pilih tema..." />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="system">Mengikuti Sistem (System)</SelectItem>
                   <SelectItem value="light">Terang (Light)</SelectItem>
                   <SelectItem value="dark">Gelap (Dark)</SelectItem>
                 </SelectContent>
               </Select>
-              <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">Pilih tema Black-Pink favoritmu. Perubahan akan berlaku setelah disimpan dan halanan di-refresh.</p>
+              <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">Pilih tema Black-Pink favoritmu. Perubahan akan berlaku setelah disimpan dan halaman di-refresh.</p>
               {errors.theme && <p className="mt-1 text-xs text-rose-500">{errors.theme as string}</p>}
             </div>
 

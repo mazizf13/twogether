@@ -25,7 +25,7 @@ export default function Login({
     const submit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        post('/login', {
+        post("/login", {
             onFinish: () => reset("password"),
         });
     };
@@ -81,7 +81,7 @@ export default function Login({
                             onChange={(e) =>
                                 setData("password", e.target.value)
                             }
-                            placeholder="••••••••"
+                            placeholder="********"
                             className={
                                 errors.password
                                     ? "border-red-500 focus-visible:ring-red-500"
@@ -138,4 +138,3 @@ export default function Login({
         </AuthLayout>
     );
 }
-

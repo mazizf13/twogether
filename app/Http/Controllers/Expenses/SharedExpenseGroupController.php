@@ -24,7 +24,7 @@ class SharedExpenseGroupController extends Controller
         $user = $request->user();
         $couple = $user->couple;
 
-        if ($group->couple_id !== $couple->id) {
+        if ($group->couple_id != $couple->id) {
             abort(403);
         }
 
@@ -80,7 +80,7 @@ class SharedExpenseGroupController extends Controller
         $user = $request->user();
         $couple = $user->couple;
 
-        if ($group->couple_id !== $couple->id) {
+        if ($group->couple_id != $couple->id) {
             abort(403);
         }
 
@@ -98,12 +98,26 @@ class SharedExpenseGroupController extends Controller
 
     public function destroy(Request $request, SharedExpenseGroup $group): RedirectResponse
     {
-        if ($group->couple_id !== $request->user()->couple_id) {
+        if ($group->couple_id != $request->user()->couple_id) {
             abort(403);
         }
 
         $group->delete();
 
         return redirect()->route('expenses.shared')->with('status', 'Kegiatan berhasil dihapus.');
+    }
+
+    public function markSettled(Request $request, SharedExpenseGroup $group): RedirectResponse
+    {
+        $user = $request->user();
+        $couple = $user->couple;
+
+        if ($group->couple_id != $couple->id) {
+            abort(403);
+        }
+
+        $group->update(['status' => 'settled']);
+
+        return back()->with('status', 'Kegiatan berhasil ditandai selesai.');
     }
 }

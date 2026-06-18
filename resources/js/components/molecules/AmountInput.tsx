@@ -65,8 +65,8 @@ export function AmountInput({ value, onChange, currencyCode, error, className }:
   return (
     <div className={cn("relative", className)}>
       <div className={cn(
-        "flex items-center w-full rounded-xl border bg-white dark:bg-neutral-950 overflow-hidden focus-within:ring-2 focus-within:ring-pink-500/20 transition-all",
-        error ? "border-rose-500 focus-within:border-rose-500" : "border-neutral-200 dark:border-neutral-800 focus-within:border-pink-500"
+        "flex items-center w-full rounded-xl border border-pink-200 dark:border-pink-900/50 bg-white dark:bg-neutral-950 overflow-hidden focus-within:ring-2 focus-within:ring-pink-500/20 transition-all",
+        error ? "border-rose-500 focus-within:border-rose-500" : "focus-within:border-pink-500"
       )}>
         <div className="pl-4 pr-2 py-3 bg-neutral-50 dark:bg-neutral-900 border-r border-neutral-100 dark:border-neutral-800 flex items-center justify-center shrink-0">
           <span className="font-semibold text-neutral-500 dark:text-neutral-400">

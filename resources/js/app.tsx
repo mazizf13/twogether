@@ -7,7 +7,7 @@ import '../css/app.css'
 createInertiaApp({
   resolve: name => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
   setup({ el, App, props }) {
-    const defaultTheme = (props.initialPage.props as any).auth?.user?.theme || 'system'
+    const defaultTheme = (props.initialPage.props as any).auth?.user?.theme || 'light'
     
     createRoot(el).render(
       <ThemeProvider defaultTheme={defaultTheme}>

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme = 'light' | 'dark' | 'system';
+type Theme = 'light' | 'dark';
 
 interface ThemeProviderProps {
     children: React.ReactNode;
@@ -16,7 +16,7 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undef
 
 export function ThemeProvider({
     children,
-    defaultTheme = 'system',
+    defaultTheme = 'light',
 }: ThemeProviderProps) {
     const [theme, setTheme] = useState<Theme>(defaultTheme);
 
@@ -24,32 +24,11 @@ export function ThemeProvider({
         const root = window.document.documentElement;
         root.classList.remove('light', 'dark');
 
-        if (theme === 'system') {
-            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-                .matches
-                ? 'dark'
-                : 'light';
-            
-            root.classList.add(systemTheme);
-            return;
+        if (theme === 'light') {
+            root.classList.add('light');
+        } else {
+            root.classList.add('dark');
         }
-
-        root.classList.add(theme);
-    }, [theme]);
-
-    // Listen for system theme changes if set to system
-    useEffect(() => {
-        if (theme !== 'system') return;
-        
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        const handleChange = () => {
-            const root = window.document.documentElement;
-            root.classList.remove('light', 'dark');
-            root.classList.add(mediaQuery.matches ? 'dark' : 'light');
-        };
-        
-        mediaQuery.addEventListener('change', handleChange);
-        return () => mediaQuery.removeEventListener('change', handleChange);
     }, [theme]);
 
     const value = {

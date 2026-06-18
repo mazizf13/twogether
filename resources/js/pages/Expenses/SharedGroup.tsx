@@ -60,9 +60,25 @@ export default function SharedGroup({
             <FolderOpen className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{group.name}</h1>
+            <div className="flex items-center space-x-3">
+              <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100">{group.name}</h1>
+              {group.status === 'settled' && (
+                <span className="text-xs font-semibold px-2 py-1 bg-green-100 text-green-700 rounded-full">Selesai</span>
+              )}
+            </div>
             <p className="text-neutral-500 dark:text-neutral-400 text-sm mt-1">{group.description || 'Tidak ada deskripsi'}</p>
             <div className="flex space-x-3 mt-2">
+              {group.status === 'active' && (
+                <>
+                  <button 
+                    onClick={() => router.post(route('expenses.shared.groups.settle', group.id), {}, { preserveScroll: true })}
+                    className="text-xs font-medium text-green-600 hover:text-green-800"
+                  >
+                    Tandai Selesai
+                  </button>
+                  <span className="text-neutral-300">|</span>
+                </>
+              )}
               <button 
                 onClick={() => setIsEditGroupModalOpen(true)}
                 className="text-xs font-medium text-blue-500 hover:text-blue-700"
